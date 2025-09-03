@@ -1,12 +1,7 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "neuron-core/laravel-travel-agent",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": [
-        "laravel",
-        "framework"
-    ],
+    "description": "How to integrate multi agent workflow in a Laravel application.",
     "license": "MIT",
     "require": {
         "php": "^8.2",
