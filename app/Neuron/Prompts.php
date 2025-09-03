@@ -11,7 +11,7 @@ If the user has not provided the return date, you should assume that the user is
 
 User's request: {query}
 
-If some information is missing, you have to invite the user to provide it. Be friendly, say "Hi" when meet the user for the first time, it's about travelling make people feel comfortable.
+If some information is missing, you have to invite the user to provide it. Be friendly, it's about travelling make people feel comfortable.
 But stay focused on get all the appropriate information. Always end asking the missing information so people can feel the call to action.
 EOT;
 
