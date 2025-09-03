@@ -1,4 +1,6 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Travel Planner Agent in Laravel 
+
+![Neuron Travel Planner Agent](public/images/screen.png)
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -7,55 +9,95 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About This Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project demonstrates how to integrate multi-agent workflows in a Laravel application 
+using [Neuron](https://docs.neuron-ai.dev) PHP AI framework.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Stack Used:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Laravel](https://laravel.com) and [Livewire](https://livewire.laravel.com/) for the application.
+- [Neuron Workflow](https://docs.neuron-ai.dev/workflow/getting-started) for multi-agent orchestration.
+- [SerpAPI](https://serpapi.com) for finding hotels, flights and places to visit comprehensive research reports on any topic using large language models,
+  with a focus on modularity, extensibility, and real-time results.
 
-## Learning Laravel
+![](public/images/chart.jpeg)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Neuron PHP framework
+Neuron is an agentic framework that allows you to create full-featured AI Agents in PHP.
+It definitively fills the gap for AI Agents development between PHP and other ecosystems like Python or Javascript.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+It provides you with a standard toolkit to implement AI-driven applications drastically reducing vendor lock-in.
+You can switch between LLMs, vector stores, embedding providers, etc. with just a few lines of code without the
+need to refactor big portions of your application.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+If you are new to AI Agents development, or you already have experience, Neuron can be the perfect playground
+to move your idea from experiments to reliable production implementations.
 
-## Laravel Sponsors
+Check out the documentation: https://docs.neuron-ai.dev
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## How to use this project
+Download the project on your machine and open your terminal in the project directory. First, install the composer dependencies:
 
-### Premium Partners
+```
+composer install
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+npm run build
 
-## Contributing
+php artisan migrate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Create a `.env` file in your project root (see `.env.example` for a template), and provides the API keys based on
+the service you want to connect with.
 
-## Code of Conduct
+```dotenv
+# At least one required
+ANTHROPIC_API_KEY=
+GEMINI_API_KEY=
+OPENAI_API_KEY=
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#Required
+SERPAPI_KEY=
 
-## Security Vulnerabilities
+# Optional
+INSPECTOR_INGESTION_KEY=
+INSPECTOR_TRANSPORT=sync
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Open the project in your browser, register an account, and start planning your trip.
 
-## License
+## Workflow architecture and Nodes
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **TravelPlannerAgent**: Orchestrates the overall itinerary generation process
+
+### Nodes
+
+- **Receptionist**: Collect all the information from the user
+- **Delegator**: Generates single reports for flights, hotels, and places to visit
+    - *Flights*
+    - *Hotels*
+    - *Places*
+- **GenerateItinerary**: Generates the final report
+
+## Monitoring & Debugging
+
+Integrating AI Agents into your application, you're not working only with functions and deterministic code,
+you program your agent also influencing probability distributions. Same input ≠ output.
+That means reproducibility, versioning, and debugging become real problems.
+
+Many of the Agents you build with Neuron will contain multiple steps with multiple invocations of LLM calls,
+tool usage, access to external memories, etc. As these applications get more and more complex, it becomes crucial
+to be able to inspect what exactly your agent is doing and why.
+
+Why is the model taking certain decisions? What data is the model reacting to? Prompting is not programming
+in the common sense. No static types, small changes break output, long prompts cost latency,
+and no two models behave exactly the same with the same prompt.
+
+The best way to do this is with [Inspector](https://inspector.dev). After you sign up,
+make sure to set the `INSPECTOR_INGESTION_KEY` variable in the application environment file to start monitoring:
+
+```dotenv
+INSPECTOR_INGESTION_KEY=fwe45gtxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+After configuring the environment variable, you will see the agent execution timeline in your Inspector dashboard.
