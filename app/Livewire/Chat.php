@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Neuron\Events\ProgressEvent;
 use App\Neuron\TravelPlannerAgent;
 use Illuminate\Support\Str;
+use Inspector\Laravel\InspectorLivewire;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use NeuronAI\Chat\History\ChatHistoryInterface;
@@ -16,6 +17,8 @@ use NeuronAI\Workflow\WorkflowState;
 
 class Chat extends Component
 {
+    use InspectorLivewire;
+
     public string $input;
 
     public array $messages = [];

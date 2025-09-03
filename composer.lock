@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e69308fb70eadaf96839c514967005da",
+    "content-hash": "e78b7b3568a37ab03f9c8c5bce6ad353",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1159,16 +1159,16 @@
         },
         {
             "name": "inspector-apm/inspector-laravel",
-            "version": "4.15.3",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inspector-apm/inspector-laravel.git",
-                "reference": "803985fb7665de8e072208b676697a6cd5cb7136"
+                "reference": "94bccd39186b49c12bc638823e3da756a9305254"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inspector-apm/inspector-laravel/zipball/803985fb7665de8e072208b676697a6cd5cb7136",
-                "reference": "803985fb7665de8e072208b676697a6cd5cb7136",
+                "url": "https://api.github.com/repos/inspector-apm/inspector-laravel/zipball/94bccd39186b49c12bc638823e3da756a9305254",
+                "reference": "94bccd39186b49c12bc638823e3da756a9305254",
                 "shasum": ""
             },
             "require": {
@@ -1219,9 +1219,9 @@
             ],
             "support": {
                 "issues": "https://github.com/inspector-apm/inspector-laravel/issues",
-                "source": "https://github.com/inspector-apm/inspector-laravel/tree/4.15.3"
+                "source": "https://github.com/inspector-apm/inspector-laravel/tree/develop"
             },
-            "time": "2025-08-24T08:24:18+00:00"
+            "time": "2025-09-03T17:23:08+00:00"
         },
         {
             "name": "inspector-apm/inspector-php",
@@ -1284,14 +1284,8 @@
             "version": "2.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/inspector-apm/neuron-ai.git",
+                "url": "https://github.com/inspector-apm/neuron-ai",
                 "reference": "b97918360550305b14c9fce914edadc8486f392f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/inspector-apm/neuron-ai/zipball/b97918360550305b14c9fce914edadc8486f392f",
-                "reference": "b97918360550305b14c9fce914edadc8486f392f",
-                "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.9",
@@ -1334,7 +1328,25 @@
                     "NeuronAI\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "NeuronAI\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "analyse": [
+                    "vendor/bin/phpstan analyse --memory-limit=1G -v"
+                ],
+                "format": [
+                    "php-cs-fixer fix --allow-risky=yes"
+                ],
+                "refactor": [
+                    "vendor/bin/rector"
+                ],
+                "test": [
+                    "vendor/bin/phpunit --colors=always"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -1345,10 +1357,6 @@
                 }
             ],
             "description": "The AI Agent Development Kit for PHP.",
-            "support": {
-                "issues": "https://github.com/inspector-apm/neuron-ai/issues",
-                "source": "https://github.com/inspector-apm/neuron-ai/tree/2.0.3"
-            },
             "time": "2025-09-02T16:12:10+00:00"
         },
         {
@@ -1418,16 +1426,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.27.1",
+            "version": "v12.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "168844fe531baaa11db00f7902fd0116d46d3bdd"
+                "reference": "aa2e8af4c7e84e83a857d5171cf784c7720da4e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/168844fe531baaa11db00f7902fd0116d46d3bdd",
-                "reference": "168844fe531baaa11db00f7902fd0116d46d3bdd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/aa2e8af4c7e84e83a857d5171cf784c7720da4e6",
+                "reference": "aa2e8af4c7e84e83a857d5171cf784c7720da4e6",
                 "shasum": ""
             },
             "require": {
@@ -1505,6 +1513,7 @@
                 "illuminate/filesystem": "self.version",
                 "illuminate/hashing": "self.version",
                 "illuminate/http": "self.version",
+                "illuminate/json-schema": "self.version",
                 "illuminate/log": "self.version",
                 "illuminate/macroable": "self.version",
                 "illuminate/mail": "self.version",
@@ -1537,7 +1546,8 @@
                 "league/flysystem-read-only": "^3.25.1",
                 "league/flysystem-sftp-v3": "^3.25.1",
                 "mockery/mockery": "^1.6.10",
-                "orchestra/testbench-core": "^10.6.3",
+                "opis/json-schema": "^2.4.1",
+                "orchestra/testbench-core": "^10.6.5",
                 "pda/pheanstalk": "^5.0.6|^7.0.0",
                 "php-http/discovery": "^1.15",
                 "phpstan/phpstan": "^2.0",
@@ -1631,7 +1641,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-09-02T23:59:38+00:00"
+            "time": "2025-09-03T17:04:36+00:00"
         },
         {
             "name": "laravel/jetstream",
@@ -9635,7 +9645,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "inspector-apm/inspector-laravel": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
