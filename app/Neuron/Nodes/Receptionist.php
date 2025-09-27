@@ -24,7 +24,7 @@ class Receptionist extends Node
     }
 
     /**
-     * This node is responsible for collecting all the information needed to create the itinerary.'
+     * This node is responsible for collecting all the information needed to create the itinerary.
      *
      * @throws \Throwable
      * @throws WorkflowInterrupt
