@@ -12,7 +12,7 @@
     "require": {
         "php": "^8.2",
         "inspector-apm/inspector-laravel": "dev-develop",
-        "inspector-apm/neuron-ai": "^2.0",
+        "neuron-core/neuron-ai": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
