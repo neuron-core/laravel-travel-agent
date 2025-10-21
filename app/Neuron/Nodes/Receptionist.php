@@ -38,6 +38,7 @@ class Receptionist extends Node
 
         if ($query === null) {
             $query = \str_replace('{query}', $state->get('query'), Prompts::TOUR_PLANNER);
+            $query = \str_replace('{name}', auth()->user()->name, $query);
         }
 
         /** @var ExtractedInfo $info */
