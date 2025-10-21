@@ -30,18 +30,14 @@ to move your idea from experiments to reliable production implementations.
 Check out the documentation: https://docs.neuron-ai.dev
 
 ## How to use this project
-Download the project on your machine and open your terminal in the project directory. First, install the composer dependencies:
+Download the project on your machine and open your terminal in the project directory and run the command below:
 
 ```
-composer install
-
-npm run build
-
-php artisan migrate
+composer setup
 ```
 
-Create a `.env` file in your project root (see `.env.example` for a template), and provides the API keys based on
-the service you want to connect with.
+The command will create the `.env` file in your project root, so you need to provide the API keys based on
+the services you want to connect with.
 
 ```dotenv
 # At least one required
