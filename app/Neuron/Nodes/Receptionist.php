@@ -16,11 +16,15 @@ use NeuronAI\Workflow\Node;
 use NeuronAI\Workflow\StartEvent;
 use NeuronAI\Workflow\WorkflowInterrupt;
 use NeuronAI\Workflow\WorkflowState;
+use Illuminate\Support\Facades\Auth;
 
 class Receptionist extends Node
 {
-    public function __construct(protected ChatHistoryInterface $history)
+    protected ChatHistoryInterface $history;
+
+    public function __construct(ChatHistoryInterface $history)
     {
+        $this->history = $history;
     }
 
     /**
@@ -38,7 +42,8 @@ class Receptionist extends Node
 
         if ($query === null) {
             $query = \str_replace('{query}', $state->get('query'), Prompts::TOUR_PLANNER);
-            $query = \str_replace('{name}', auth()->user()->name, $query);
+            // $query = \str_replace('{name}', auth()->user()->name, $query);
+            $query = \str_replace('{name}', Auth::user()->name, $query);
         }
 
         /** @var ExtractedInfo $info */
