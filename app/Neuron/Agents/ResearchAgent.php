@@ -17,21 +17,22 @@ class ResearchAgent extends Agent
 {
     protected function provider(): AIProviderInterface
     {
-        if (isset($_ENV['ANTHROPIC_API_KEY'])) {
+        if (!empty($_ENV['ANTHROPIC_API_KEY'])) {
             return new Anthropic(
                 $_ENV['ANTHROPIC_API_KEY'],
                 'claude-3-7-sonnet-latest'
             );
         }
 
-        if (isset($_ENV['OPENAI_API_KEY'])) {
+        if (!empty($_ENV['OPENAI_API_KEY'])) {
             return new OpenAI(
                 $_ENV['OPENAI_API_KEY'],
-                'gpt-3.5-turbo'
+                // 'gpt-3.5-turbo'
+                'gpt-4o'
             );
         }
 
-        if (isset($_ENV['GEMINI_API_KEY'])) {
+        if (!empty($_ENV['GEMINI_API_KEY'])) {
             return new Gemini(
                 $_ENV['GEMINI_API_KEY'],
                 'gemini-2.0-flash'
