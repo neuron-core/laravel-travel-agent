@@ -30,7 +30,7 @@ class TravelPlannerAgent extends Workflow
     public function __construct(protected string $input, User $user){
         parent::__construct(
             state: new WorkflowState(['query' => $this->input]),
-            persistence: new FilePersistence(storage_path('ai'), "planner_persistence_{$user->id}"),
+            persistence: new FilePersistence(storage_path('ai'), $user->id.'_'),
             workflowId: "planner_{$user->id}"
         );
 
