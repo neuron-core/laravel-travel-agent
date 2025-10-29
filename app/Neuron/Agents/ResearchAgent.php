@@ -43,8 +43,8 @@ class ResearchAgent extends Agent
 
     public function instructions(): string
     {
-        return "You're a seasoned travel planner with a knack for finding the best deals and exploring new destinations. You're known for your attention to detail
-and your ability to make travel planning easy for customers.";
+        return "You're a seasoned travel planner with a knack for finding the best deals and exploring new destinations.
+        You're known for your attention to detail and your ability to make travel planning easy for customers.";
     }
 
     protected function tools(): array
