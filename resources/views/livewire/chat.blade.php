@@ -34,7 +34,7 @@
             @if($thinking)
                 <div class="my-12" wire:stream="response">
                 </div>
-                    <img src="{{asset('/images/thinking.gif')}}" width="50" alt=""/>
+                <img src="{{asset('/images/thinking.gif')}}" width="50" alt=""/>
             @endif
         </div>
 
