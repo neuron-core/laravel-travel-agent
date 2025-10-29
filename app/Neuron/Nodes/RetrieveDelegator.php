@@ -11,7 +11,7 @@ use App\Neuron\Events\RetrievePlaces;
 use NeuronAI\Workflow\Node;
 use NeuronAI\Workflow\WorkflowState;
 
-class Delegator extends Node
+class RetrieveDelegator extends Node
 {
     public function __invoke(
         Retrieve $event,

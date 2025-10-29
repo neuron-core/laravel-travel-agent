@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Neuron;
 
 use App\Models\User;
-use App\Neuron\Nodes\Delegator;
+use App\Neuron\Nodes\RetrieveDelegator;
 use App\Neuron\Nodes\Receptionist;
 use App\Neuron\Nodes\Flights;
 use App\Neuron\Nodes\GenerateItinerary;
@@ -41,7 +41,7 @@ class TravelPlannerAgent extends Workflow
     {
         return [
             new Receptionist($this->history),
-            new Delegator(),
+            new RetrieveDelegator(),
             new Flights(),
             new Hotels(),
             new Places(),
