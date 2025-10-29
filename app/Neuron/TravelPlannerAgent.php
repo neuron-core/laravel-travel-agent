@@ -28,13 +28,13 @@ class TravelPlannerAgent extends Workflow
      * @throws ChatHistoryException
      */
     public function __construct(protected string $input, User $user){
-        parent::__construct(
-            state: new WorkflowState(['query' => $this->input]),
-            persistence: new FilePersistence(storage_path('ai'), $user->id.'_'),
-            workflowId: "planner_{$user->id}"
-        );
-
         $this->history = new FileChatHistory(storage_path('ai'), "planner_chat_{$user->id}");
+
+        $state = new WorkflowState(['query' => $this->input]);
+        $persistence = new FilePersistence(storage_path('ai'), $user->id.'_');
+        $workflowID = "planner_{$user->id}";
+
+        parent::__construct($state, $persistence, $workflowID);
     }
 
     protected function nodes(): array
