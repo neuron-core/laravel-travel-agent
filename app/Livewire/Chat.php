@@ -5,11 +5,14 @@ namespace App\Livewire;
 use App\Neuron\Events\ProgressEvent;
 use App\Neuron\TravelPlannerAgent;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Inspector\Laravel\InspectorLivewire;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use NeuronAI\Chat\History\ChatHistoryInterface;
 use NeuronAI\Chat\History\FileChatHistory;
+use NeuronAI\Exceptions\ChatHistoryException;
+use NeuronAI\Exceptions\WorkflowException;
 use NeuronAI\Workflow\Persistence\FilePersistence;
 use NeuronAI\Workflow\Persistence\PersistenceInterface;
 use NeuronAI\Workflow\WorkflowInterrupt;
@@ -27,22 +30,12 @@ class Chat extends Component
 
     public bool $interrupted = false;
 
-    protected ChatHistoryInterface $history;
-
-    protected PersistenceInterface $persistence;
-
-    public function __construct()
-    {
-        $this->history = new FileChatHistory(storage_path('ai'), 'planner_chat_history');
-        $this->persistence = new FilePersistence(storage_path('ai'), 'planner_persistence');
-    }
-
-    public function render()
+    public function render(): View
     {
         return view('livewire.chat');
     }
 
-    public function chat()
+    public function chat(): void
     {
         $this->messages[] = [
             'who' => 'user',
@@ -57,14 +50,16 @@ class Chat extends Component
         $this->input = '';
     }
 
+    /**
+     * @throws \Throwable
+     * @throws WorkflowException
+     */
     #[On('getAIResponse')]
     public function getAIResponse($input): void
     {
         $workflow = new TravelPlannerAgent(
-            $this->history,
-            new WorkflowState(['query' => \array_first($this->messages)['content']]),
-            $this->persistence,
-            'travel_planner_agent'
+            \array_first($this->messages)['content'],
+            auth()->user()
         );
 
         try {
