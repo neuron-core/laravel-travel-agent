@@ -29,9 +29,9 @@ class TravelPlannerAgent extends Workflow
      */
     public function __construct(protected string $input, User $user){
         parent::__construct(
-            new WorkflowState(['query' => $this->input]),
-            new FilePersistence(storage_path('ai'), 'planner_persistence'),
-            "planner_{$user->id}"
+            state: new WorkflowState(['query' => $this->input]),
+            persistence: new FilePersistence(storage_path('ai'), 'planner_persistence'),
+            workflowId: "planner_{$user->id}"
         );
 
         $this->history = new FileChatHistory(storage_path('ai'), 'planner_chat_history');

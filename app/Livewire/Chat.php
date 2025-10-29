@@ -9,14 +9,8 @@ use Illuminate\View\View;
 use Inspector\Laravel\InspectorLivewire;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use NeuronAI\Chat\History\ChatHistoryInterface;
-use NeuronAI\Chat\History\FileChatHistory;
-use NeuronAI\Exceptions\ChatHistoryException;
 use NeuronAI\Exceptions\WorkflowException;
-use NeuronAI\Workflow\Persistence\FilePersistence;
-use NeuronAI\Workflow\Persistence\PersistenceInterface;
 use NeuronAI\Workflow\WorkflowInterrupt;
-use NeuronAI\Workflow\WorkflowState;
 
 class Chat extends Component
 {
