@@ -34,7 +34,7 @@ class TravelPlannerAgent extends Workflow
             workflowId: "planner_{$user->id}"
         );
 
-        $this->history = new FileChatHistory(storage_path('ai'), 'planner_chat_history');
+        $this->history = new FileChatHistory(storage_path('ai'), "planner_chat_{$user->id}");
     }
 
     protected function nodes(): array
