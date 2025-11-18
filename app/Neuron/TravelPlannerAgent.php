@@ -31,7 +31,7 @@ class TravelPlannerAgent extends Workflow
         $this->history = new FileChatHistory(storage_path('ai'), "planner_chat_{$user->id}");
 
         $state = new WorkflowState(['query' => $this->input]);
-        $persistence = new FilePersistence(storage_path('ai'), $user->id.'_');
+        $persistence = new FilePersistence(storage_path('ai'));
         $workflowID = "planner_{$user->id}";
 
         parent::__construct($state, $persistence, $workflowID);
