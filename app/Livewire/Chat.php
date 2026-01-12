@@ -6,7 +6,6 @@ use App\Neuron\Events\ProgressEvent;
 use App\Neuron\TravelPlannerAgent;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Inspector\Laravel\InspectorLivewire;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use NeuronAI\Exceptions\WorkflowException;
@@ -14,8 +13,6 @@ use NeuronAI\Workflow\WorkflowInterrupt;
 
 class Chat extends Component
 {
-    use InspectorLivewire;
-
     public string $input;
 
     public array $messages = [];
