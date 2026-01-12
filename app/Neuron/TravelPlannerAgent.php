@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Neuron;
 
-use App\Neuron\Nodes\Delegator;
+use App\Models\User;
+use App\Neuron\Nodes\RetrieveDelegator;
 use App\Neuron\Nodes\Receptionist;
 use App\Neuron\Nodes\Flights;
 use App\Neuron\Nodes\GenerateItinerary;
@@ -14,29 +15,33 @@ use NeuronAI\Chat\History\ChatHistoryInterface;
 use NeuronAI\Chat\History\FileChatHistory;
 use NeuronAI\Exceptions\ChatHistoryException;
 use NeuronAI\Exceptions\WorkflowException;
-use NeuronAI\Workflow\Persistence\PersistenceInterface;
+use NeuronAI\Workflow\Persistence\FilePersistence;
 use NeuronAI\Workflow\Workflow;
 use NeuronAI\Workflow\WorkflowState;
 
 class TravelPlannerAgent extends Workflow
 {
+    protected ChatHistoryInterface $history;
+
     /**
      * @throws WorkflowException
+     * @throws ChatHistoryException
      */
-    public function __construct(
-        protected ChatHistoryInterface $history,
-        ?WorkflowState $state = null,
-        ?PersistenceInterface $persistence = null,
-        ?string $workflowId = null
-    ){
-        parent::__construct($state, $persistence, $workflowId);
+    public function __construct(protected string $input, User $user){
+        $this->history = new FileChatHistory(storage_path('ai'), "planner_chat_{$user->id}");
+
+        $state = new WorkflowState(['query' => $this->input]);
+        $persistence = new FilePersistence(storage_path('ai'));
+        $workflowID = "planner_{$user->id}";
+
+        parent::__construct($state, $persistence, $workflowID);
     }
 
     protected function nodes(): array
     {
         return [
             new Receptionist($this->history),
-            new Delegator(),
+            new RetrieveDelegator(),
             new Flights(),
             new Hotels(),
             new Places(),

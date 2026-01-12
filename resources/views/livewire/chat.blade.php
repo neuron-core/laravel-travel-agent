@@ -34,7 +34,7 @@
             @if($thinking)
                 <div class="my-12" wire:stream="response">
                 </div>
-                    <img src="{{asset('/images/thinking.gif')}}" width="50" alt=""/>
+                <img src="{{asset('/images/thinking.gif')}}" width="50" alt=""/>
             @endif
         </div>
 
@@ -57,7 +57,7 @@
         </form>
 
         <p class="mt-8 text-sm">
-            The travel agent running behind the scenes is built with with Neuron PHP framework. For more information, please visit
+            The travel agent running behind the scenes is built with Neuron PHP framework. For more information, please visit
             <a class="text-blue-600 hover:underline" href="https://docs.neuron-ai.dev" target="_blank">Neuron Documentation</a>.
         </p>
     </div>

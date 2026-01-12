@@ -11,10 +11,11 @@ use App\Neuron\Events\RetrievePlaces;
 use NeuronAI\Workflow\Node;
 use NeuronAI\Workflow\WorkflowState;
 
-class Delegator extends Node
+class RetrieveDelegator extends Node
 {
     public function __invoke(
-        Retrieve $event, WorkflowState $state
+        Retrieve $event,
+        WorkflowState $state
     ): \Generator|RetrieveHotels|RetrievePlaces|RetrieveFlights|CreateItinerary {
 
         if (!$state->has('flights')) {
